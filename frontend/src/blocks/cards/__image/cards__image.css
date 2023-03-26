@@ -1,0 +1,14 @@
+.cards__image {
+  display: block;
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  background-color: black;
+}

@@ -1,0 +1,17 @@
+.auth__input-error {
+  width: 358px;
+  display: block;
+  margin: 0 auto;
+  min-height: 28px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #f00;
+}
+
+@media screen and (max-width: 767px) {
+  .auth__input-error {
+    width: 260px;
+  }
+}

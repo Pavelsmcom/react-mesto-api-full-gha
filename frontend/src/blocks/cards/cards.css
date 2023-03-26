@@ -1,0 +1,21 @@
+.cards {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 19px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 17px;
+  row-gap: 20px;
+  list-style-type: none;
+}
+@media screen and (max-width: 934px) {
+  .cards {
+    max-width: 581px;
+  }
+}
+@media screen and (max-width: 635px) {
+  .cards {
+    max-width: 282px;
+  }
+}

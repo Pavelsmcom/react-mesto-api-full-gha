@@ -1,0 +1,16 @@
+.header__text {
+  margin: 0;
+  padding-right: 24px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .header__text {
+    padding-right: 0;
+    padding-bottom: 18px;
+  }
+}

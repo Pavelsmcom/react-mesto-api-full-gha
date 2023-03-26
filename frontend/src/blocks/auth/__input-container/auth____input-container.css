@@ -1,0 +1,12 @@
+.auth__input-container {
+  position: relative;
+  width: 358px;
+  height: 27px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .auth__input-container {
+    width: 260px;
+  }
+}

@@ -1,0 +1,18 @@
+.auth__header {
+  padding: 60px 0 48px 0;
+  margin: 0;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+  .auth__header {
+    padding: 40px 0px 38px 0px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
