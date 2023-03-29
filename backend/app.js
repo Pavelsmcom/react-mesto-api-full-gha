@@ -26,7 +26,7 @@ const limiter = rateLimit({
 });
 
 const corsOptions = {
-  origin: 'https://mesto.pavelsm.nomoredomains.work',
+  origin: ['https://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work/signin', 'https://mesto.pavelsm.nomoredomains.work/signup', 'https://mesto.pavelsm.nomoredomains.work/users/me'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
