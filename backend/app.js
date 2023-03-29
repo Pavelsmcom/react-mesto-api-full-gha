@@ -6,7 +6,8 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 // const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
-const cookieParser = require('cookie-parser');
+const cors = require('cors');
+// npm i -const cookieParser = require('cookie-parser');
 
 const errorMiddleware = require('./middlewares/error-middleware');
 const auth = require('./middlewares/auth');
@@ -24,14 +25,22 @@ const limiter = rateLimit({
   message: 'to many request from this IP',
 });
 
+const corsOptions = {
+  origin: 'https://mesto.pavelsm.nomoredomains.work',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
+app.use(cors(corsOptions));
+
 app.use(helmet());
 app.use(limiter);
 app.use(bodyParser.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
 app.use(requestLogger);
 
