@@ -1,13 +1,13 @@
 export const optionsConnection = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-56/',
+  baseUrl: 'http://api.mesto.pavelsm.nomoredomains.work',
   headers: {
-    authorization: '246582af-db1f-41d3-a946-8c012a1490d8',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 };
 
 export const optionsConnectionAuth = {
-  baseUrl: 'https://auth.nomoreparties.co/',
+  baseUrl: 'http://api.mesto.pavelsm.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
   },
