@@ -7,8 +7,8 @@ function Main({ onCardClick, onCardLike, onCardDelete, onEditAvatar, onEditProfi
   const currentUser = useContext(CurrentUserContext);
 
   const cardsElements = cards.map((card) => {
-    const isOwn = card.owner._id === currentUser._id;
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isOwn = card.owner === currentUser._id;
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     return (
       <li className="cards__item" key={card._id}>
         <Card card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} isOwn={isOwn} isLiked={isLiked} />
