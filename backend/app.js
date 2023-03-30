@@ -37,8 +37,8 @@ const app = express();
 
 app.use(cors());
 
-// app.use(helmet());
-// app.use(limiter);
+app.use(helmet());
+app.use(limiter);
 app.use(bodyParser.json());
 // app.use(cookieParser());
 
