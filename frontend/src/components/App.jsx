@@ -68,8 +68,10 @@ function App() {
   useEffect(() => {
     (async () => {
       const jwt = localStorage.getItem('jwt');
+      console.log(jwt)
       if (jwt) {
         try {
+          console.log('v try')
           const data = await apiAuth.checkToken(jwt);
           setCurrentUser((user) => ({ ...user, email: data.data.email }));
           setLoggedIn(true);
