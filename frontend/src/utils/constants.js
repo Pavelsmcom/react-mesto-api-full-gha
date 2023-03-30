@@ -1,5 +1,5 @@
 export const optionsConnection = {
-  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work/',
+  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work',
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
@@ -7,7 +7,7 @@ export const optionsConnection = {
 };
 
 export const optionsConnectionAuth = {
-  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work/',
+  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
   },

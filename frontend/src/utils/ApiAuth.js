@@ -14,7 +14,7 @@ class ApiAuth {
 
   // Регистрация пользователя
   async register({ password, email }) {
-    const res = await fetch(`${this._baseUrl}signup`, {
+    const res = await fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ password: password, email: email }),
@@ -26,7 +26,7 @@ class ApiAuth {
 
   // Авторизация  пользователя
   async login({ password, email }) {
-    const res = await fetch(`${this._baseUrl}signin`, {
+    const res = await fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ password: password, email: email }),
@@ -38,7 +38,7 @@ class ApiAuth {
 
   // Проверка токена
   async checkToken(token) {
-    const res = await fetch(`${this._baseUrl}users/me`, {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     });
