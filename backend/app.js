@@ -26,7 +26,7 @@ const limiter = rateLimit({
 });
 
 const corsOptions = {
-  origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work/', 'http://localhost:3000', 'http://localhost:80'],
+  origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work', 'http://localhost:3000', 'http://localhost:80'],
 };
 
 const { PORT = 3000 } = process.env;
