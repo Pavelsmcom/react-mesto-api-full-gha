@@ -52,10 +52,8 @@ function App() {
       if (loggedIn) {
         try {
           setIsCardLoading(true);
-          console.log(localStorage.getItem('jwt'));
           const [userData, cardsData] = await Promise.all([api.getUserInfo(), api.getInitialCards()]);
           const { name, about, avatar, cohort, _id } = userData;
-          console.log(userData)
           setCurrentUser((user) => ({ ...user, avatar: avatar, cohort: cohort, name: name, about: about, _id: _id }));
           setCards(cardsData);
         } catch (error) {
