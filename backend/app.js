@@ -25,17 +25,17 @@ const limiter = rateLimit({
   message: 'to many request from this IP ',
 });
 
-// const corsOptions = {
-//   origin: ['https://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work/signin', 'https://mesto.pavelsm.nomoredomains.work/signup', 'https://mesto.pavelsm.nomoredomains.work/users/me'],
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
+const corsOptions = {
+  origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work/'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(helmet());
 app.use(limiter);
