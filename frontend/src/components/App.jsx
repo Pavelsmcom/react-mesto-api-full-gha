@@ -52,8 +52,10 @@ function App() {
       if (loggedIn) {
         try {
           setIsCardLoading(true);
+          console.log(localStorage.getItem('jwt'));
           const [userData, cardsData] = await Promise.all([api.getUserInfo(), api.getInitialCards()]);
           const { name, about, avatar, cohort, _id } = userData;
+          console.log(userData)
           setCurrentUser((user) => ({ ...user, avatar: avatar, cohort: cohort, name: name, about: about, _id: _id }));
           setCards(cardsData);
         } catch (error) {
@@ -201,7 +203,7 @@ function App() {
         setLoggedIn(true);
         localStorage.setItem('jwt', data.token);
         navigate('/', { replace: true });
-        setCurrentUser((user) => ({ ...user, email: user.email }));
+        setCurrentUser((user) => ({ ...user, email: user?.email ?? '' }));
       }
     } catch (error) {
       setServerResponseStatus({ status: false, text: 'Что-то пошло не так! Попробуйте ещё раз.' });

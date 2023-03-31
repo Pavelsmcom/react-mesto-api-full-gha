@@ -1,9 +1,6 @@
-import { optionsConnection } from './constants.js';
-
 class Api {
   constructor(optionsConnection) {
     this._baseUrl = optionsConnection.baseUrl;
-    this._headers = optionsConnection.headers;
   }
 
   _isCorrectServerResponse(res, errorMessage) {
@@ -12,10 +9,17 @@ class Api {
     }
   }
 
+  _getAuthHeader() {
+    return `Bearer ${localStorage.getItem('jwt')}`;
+  }
+
   // Получаем массив карточек от сервера
   async getInitialCards() {
     const res = await fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
     });
     this._isCorrectServerResponse(res, 'Ошибка получения карточек с сервера');
     const data = await res.json();
@@ -26,7 +30,10 @@ class Api {
   async addCard(card) {
     const res = await fetch(`${this._baseUrl}/cards `, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: card.name,
         link: card.link,
@@ -41,7 +48,10 @@ class Api {
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId} `, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
     });
     this._isCorrectServerResponse(res, 'Ошибка удаления карточки');
   }
@@ -51,11 +61,17 @@ class Api {
     const res = isLike
       ? await fetch(`${this._baseUrl}/cards/${cardId}/likes `, {
           method: 'DELETE',
-          headers: this._headers,
+          headers: {
+            authorization: this._getAuthHeader(),
+            'Content-Type': 'application/json',
+          },
         })
       : await fetch(`${this._baseUrl}/cards/${cardId}/likes `, {
           method: 'PUT',
-          headers: this._headers,
+          headers: {
+            authorization: this._getAuthHeader(),
+            'Content-Type': 'application/json',
+          },
         });
     this._isCorrectServerResponse(res, 'Ошибка изменения статуса лайка');
     const data = await res.json();
@@ -65,7 +81,10 @@ class Api {
   // Получаем данные пользователя от сервера
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me `, {
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
     });
     this._isCorrectServerResponse(res, 'Ошибка получения данных пользователя с сервера');
     const data = await res.json();
@@ -76,7 +95,10 @@ class Api {
   async setUserInfo(userInfo) {
     const res = await fetch(`${this._baseUrl}/users/me `, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: userInfo.name,
         about: userInfo.about,
@@ -91,7 +113,10 @@ class Api {
   async setAvatar(link) {
     const res = await fetch(`${this._baseUrl}/users/me/avatar `, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: this._getAuthHeader(),
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         avatar: link,
       }),
@@ -102,4 +127,6 @@ class Api {
   }
 }
 
-export const api = new Api(optionsConnection);
+export const api = new Api({
+  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work',
+});

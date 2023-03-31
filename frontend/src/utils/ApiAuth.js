@@ -1,5 +1,3 @@
-import { optionsConnectionAuth } from './constants.js';
-
 class ApiAuth {
   constructor(optionsConnectionAuth) {
     this._baseUrl = optionsConnectionAuth.baseUrl;
@@ -48,4 +46,9 @@ class ApiAuth {
   }
 }
 
-export const apiAuth = new ApiAuth(optionsConnectionAuth);
+export const apiAuth = new ApiAuth({
+  baseUrl: 'https://api.mesto.pavelsm.nomoredomains.work',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
