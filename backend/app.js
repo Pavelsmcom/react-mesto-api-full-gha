@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
-// const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
+// const { celebrate, Joi } = require('celebrate');
 // npm i -const cookieParser = require('cookie-parser');
 
 const errorMiddleware = require('./middlewares/error-middleware');
