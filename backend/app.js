@@ -25,15 +25,15 @@ const limiter = rateLimit({
   message: 'to many request from this IP ',
 });
 
-const corsOptions = {
-  origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work'],
-};
+// const corsOptions = {
+//   origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work'],
+// };
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(helmet());
 app.use(limiter);
