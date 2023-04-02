@@ -12,10 +12,14 @@ const errorMiddleware = require('./middlewares/error-middleware');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const limiterConfig = require('./utils/limiterConfig');
+// const limiterConfig = require('./utils/limiterConfig');
 const routes = require('./routes/index');
 
-const limiter = rateLimit(limiterConfig);
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1  minutes
+  max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  message: 'to many request from this IP ',
+});
 
 const corsOptions = {
   origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work'],
