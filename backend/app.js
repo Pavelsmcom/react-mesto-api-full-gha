@@ -6,24 +6,16 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const cors = require('cors');
-// const { celebrate, Joi } = require('celebrate');
 // npm i -const cookieParser = require('cookie-parser');
 
 const errorMiddleware = require('./middlewares/error-middleware');
-const auth = require('./middlewares/auth');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const NotFoundError = require('./utils/errors/not-found-error');
-const { validateSignIn, validateSignUp } = require('./utils/validation/validation');
 
-const usersRoutes = require('./routes/users');
-const cardsRoutes = require('./routes/cards');
-const { login, createUser } = require('./controllers/user');
+const limiterConfig = require('./utils/limiterConfig');
+const routes = require('./routes/index');
 
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1  minutes
-  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-  message: 'to many request from this IP ',
-});
+const limiter = rateLimit(limiterConfig);
 
 const corsOptions = {
   origin: ['http://mesto.pavelsm.nomoredomains.work', 'https://mesto.pavelsm.nomoredomains.work'],
@@ -36,11 +28,12 @@ const app = express();
 app.use(cors(corsOptions));
 
 app.use(helmet());
-app.use(limiter);
+
 app.use(bodyParser.json());
 // app.use(cookieParser());
 
 app.use(requestLogger);
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -48,17 +41,9 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signin', validateSignIn, login);
-app.post('/signup', validateSignUp, createUser);
-
-app.use('/users', auth, usersRoutes);
-app.use('/cards', auth, cardsRoutes);
-app.use('/*', (req, res, next) => {
-  next(new NotFoundError('Not Found'));
-});
+app.use(routes);
 
 app.use(errorLogger);
-
 app.use(errors());
 app.use(errorMiddleware);
 

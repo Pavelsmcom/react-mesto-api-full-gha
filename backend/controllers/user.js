@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../utils/errors/not-found-error');
 const BadRequestError = require('../utils/errors/bad-request-error');
-const UnauthorizedError = require('../utils/errors/unauthorized-error');
 const ConflictError = require('../utils/errors/conflict-error');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
@@ -129,9 +128,7 @@ module.exports.login = (req, res, next) => {
     //     httpOnly: true,
     //   }).end();
     })
-    .catch((err) => {
-      next(new UnauthorizedError(err.message));
-    });
+    .catch(next);
 };
 
 module.exports.getMe = (req, res, next) => {
