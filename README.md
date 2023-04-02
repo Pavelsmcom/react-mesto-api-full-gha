@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.32.158
+IP 158.160.32.158
 
 Frontend https://mesto.pavelsm.nomoredomains.work/
 
